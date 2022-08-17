@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PL
 {
-    public class Alumno
+    public class Alumno //Pedir datos para el CRUD
     {
         public static void Add()
         {
@@ -22,7 +22,23 @@ namespace PL
             Console.WriteLine("Inserte el apellido materno del Alumno");
             alumno.ApellidoMaterno = Console.ReadLine();
 
-            
+            Console.WriteLine("Inserte el Fecha de nacimiento del Alumno");
+            alumno.FechaNacimiento = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Inserte el genero");
+            alumno.Sexo = Console.ReadLine();
+
+            ML.Result result = BL.Alumno.Add(alumno);
+
+            if (result.Correct)
+            {
+                Console.WriteLine("Alumno registrado con exito");
+            }
+            else
+            {
+                Console.WriteLine("Ocurrio un error al registrar al alumno" + result.ErrorMessage);
+            }
+
 
         }
     }
