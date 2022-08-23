@@ -10,6 +10,10 @@ namespace PL
     {
         static void Main(string[] args)
         {
+            Alumno.GetAll();
+            Alumno.Add();
+
+            //Alumno.Update();
         }
     }
 }
