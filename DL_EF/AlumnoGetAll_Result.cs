@@ -10,9 +10,8 @@
 namespace DL_EF
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Alumno
+    public partial class AlumnoGetAll_Result
     {
         public int IdAlumno { get; set; }
         public string Nombre { get; set; }
@@ -20,8 +19,5 @@ namespace DL_EF
         public string ApellidoMaterno { get; set; }
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public string Sexo { get; set; }
-        public Nullable<byte> IdRol { get; set; }
-    
-        public virtual Rol Rol { get; set; }
     }
 }

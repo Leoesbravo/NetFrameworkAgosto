@@ -8,7 +8,7 @@ namespace ML
 {
     public class Semestre
     {
-        public int IdRol { get; set; }
+        public byte IdSemestre { get; set; }
         public string Nombre { get; set; }
     }
 }

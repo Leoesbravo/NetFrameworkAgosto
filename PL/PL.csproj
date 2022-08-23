@@ -66,6 +66,10 @@
       <Project>{4736f775-9037-4078-b634-7c04b13c4f96}</Project>
       <Name>BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DL_EF\DL_EF.csproj">
+      <Project>{B3F0FDBA-CAFC-4D2D-9FDD-F4F77F0C8126}</Project>
+      <Name>DL_EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ML\ML.csproj">
       <Project>{0235388c-12e7-4615-90f4-3b2c440a83a3}</Project>
       <Name>ML</Name>

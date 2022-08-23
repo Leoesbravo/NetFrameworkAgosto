@@ -12,7 +12,30 @@ namespace BL
     {
         public static ML.Result AddEF(ML.Alumno alumno)
         {
+            ML.Result result = new ML.Result();
 
+            try
+            {
+                using(DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
+                {
+                    var query = context.AlumnoAdd(alumno.Nombre, alumno.ApellidoPaterno, alumno.ApellidoMaterno, alumno.FechaNacimiento, alumno.Sexo, alumno.Semestre.IdSemestre);
+
+                    if (query > 0)
+                    {
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
         }
         public static ML.Result Update(ML.Alumno alumno)
         {
@@ -112,7 +135,7 @@ namespace BL
                                 alumno.Nombre = row[1].ToString();
                                 alumno.ApellidoPaterno = row[2].ToString();
                                 alumno.ApellidoMaterno = row[3].ToString();
-                                alumno.FechaNacimiento = DateTime.Parse(row[4].ToString());
+                                alumno.FechaNacimiento = row[4].ToString();
                                 alumno.Sexo= row[5].ToString();
 
                                 result.Objects.Add(alumno);

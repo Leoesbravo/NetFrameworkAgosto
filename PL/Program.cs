@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DL_EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace PL
     {
         static void Main(string[] args)
         {
-            Alumno.GetAll();
+            //Alumno.();
             Alumno.Add();
             //Alumno.AddSP();
 

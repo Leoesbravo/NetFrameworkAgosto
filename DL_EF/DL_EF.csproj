@@ -53,6 +53,12 @@
     <Compile Include="Alumno.cs">
       <DependentUpon>LEscogidoProgramacionNCapasAgosto.tt</DependentUpon>
     </Compile>
+    <Compile Include="AlumnoGetAll_Result.cs">
+      <DependentUpon>LEscogidoProgramacionNCapasAgosto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnoGetById_Result.cs">
+      <DependentUpon>LEscogidoProgramacionNCapasAgosto.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="LEscogidoProgramacionNCapasAgosto.Context.cs">
       <AutoGen>True</AutoGen>
@@ -70,6 +76,9 @@
       <DependentUpon>LEscogidoProgramacionNCapasAgosto.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rol.cs">
+      <DependentUpon>LEscogidoProgramacionNCapasAgosto.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="LEscogidoProgramacionNCapasAgosto.edmx">
