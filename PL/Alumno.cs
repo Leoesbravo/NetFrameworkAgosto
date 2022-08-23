@@ -22,7 +22,8 @@ namespace PL
             Console.WriteLine("Inserte el apellido materno del Alumno");
             alumno.ApellidoMaterno = Console.ReadLine();
 
-            
+            // ML.Result result = BL.Alumno.AddSP
+            ML.Result result = BL.Alumno.AddEF(alumno);
 
         }
     }
