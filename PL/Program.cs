@@ -12,6 +12,7 @@ namespace PL
         {
             Alumno.GetAll();
             Alumno.Add();
+            //Alumno.AddSP();
 
             //Alumno.Update();
         }

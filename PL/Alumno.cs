@@ -29,6 +29,7 @@ namespace PL
             alumno.Sexo = Console.ReadLine();
 
             ML.Result result = BL.Alumno.Add(alumno);
+           // ML.Result result = BL.Alumno.AddSP(alumno);
 
             if (result.Correct)
             {
