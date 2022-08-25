@@ -12,15 +12,15 @@ namespace DL_EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Rol
+    public partial class Semestre
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rol()
+        public Semestre()
         {
             this.Alumnoes = new HashSet<Alumno>();
         }
     
-        public byte IdRol { get; set; }
+        public int IdSemestre { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

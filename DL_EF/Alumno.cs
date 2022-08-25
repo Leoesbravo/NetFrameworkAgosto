@@ -20,8 +20,8 @@ namespace DL_EF
         public string ApellidoMaterno { get; set; }
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public string Sexo { get; set; }
-        public Nullable<byte> IdRol { get; set; }
+        public Nullable<int> IdSemestre { get; set; }
     
-        public virtual Rol Rol { get; set; }
+        public virtual Semestre Semestre { get; set; }
     }
 }

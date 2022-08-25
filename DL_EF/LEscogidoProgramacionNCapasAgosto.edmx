@@ -15,24 +15,24 @@
           <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
           <Property Name="FechaNacimiento" Type="date" />
           <Property Name="Sexo" Type="char" MaxLength="1" />
-          <Property Name="IdRol" Type="tinyint" />
+          <Property Name="IdSemestre" Type="int" />
         </EntityType>
-        <EntityType Name="Rol">
+        <EntityType Name="Semestre">
           <Key>
-            <PropertyRef Name="IdRol" />
+            <PropertyRef Name="IdSemestre" />
           </Key>
-          <Property Name="IdRol" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSemestre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Alumno__IdRol__15502E78">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+        <Association Name="FK__Alumno__IdSemest__25869641">
+          <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
           <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="IdRol" />
+            <Principal Role="Semestre">
+              <PropertyRef Name="IdSemestre" />
             </Principal>
             <Dependent Role="Alumno">
-              <PropertyRef Name="IdRol" />
+              <PropertyRef Name="IdSemestre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -42,17 +42,14 @@
           <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
           <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
           <Parameter Name="Sexo" Type="char" Mode="In" />
-          <Parameter Name="IdRol" Type="tinyint" Mode="In" />
+          <Parameter Name="IdSemestre" Type="int" Mode="In" />
         </Function>
         <Function Name="AlumnoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="AlumnoGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdAlumno" Type="int" Mode="In" />
-        </Function>
         <EntityContainer Name="LEscogidoProgramacionNCapasAgostoModelStoreContainer">
           <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Alumno__IdRol__15502E78" Association="Self.FK__Alumno__IdRol__15502E78">
-            <End Role="Rol" EntitySet="Rol" />
+          <EntitySet Name="Semestre" EntityType="Self.Semestre" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Alumno__IdSemest__25869641" Association="Self.FK__Alumno__IdSemest__25869641">
+            <End Role="Semestre" EntitySet="Semestre" />
             <End Role="Alumno" EntitySet="Alumno" />
           </AssociationSet>
         </EntityContainer>
@@ -60,59 +57,26 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LEscogidoProgramacionNCapasAgostoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Alumno">
-          <Key>
-            <PropertyRef Name="IdAlumno" />
-          </Key>
-          <Property Name="IdAlumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
-          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="IdRol" Type="Byte" />
-          <NavigationProperty Name="Rol" Relationship="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdRol__15502E78" FromRole="Alumno" ToRole="Rol" />
-        </EntityType>
         <EntityContainer Name="LEscogidoProgramacionNCapasAgostoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Alumnoes" EntityType="Self.Alumno" />
+          <FunctionImport Name="AlumnoGetAll" ReturnType="Collection(LEscogidoProgramacionNCapasAgostoModel.AlumnoGetAll_Result)" />
+          <FunctionImport Name="AlumnoGetById" ReturnType="Collection(LEscogidoProgramacionNCapasAgostoModel.AlumnoGetById_Result)">
+            <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Semestres" EntityType="LEscogidoProgramacionNCapasAgostoModel.Semestre" />
+          <EntitySet Name="Alumnoes" EntityType="LEscogidoProgramacionNCapasAgostoModel.Alumno" />
+          <AssociationSet Name="FK__Alumno__IdSemest__25869641" Association="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdSemest__25869641">
+            <End Role="Semestre" EntitySet="Semestres" />
+            <End Role="Alumno" EntitySet="Alumnoes" />
+          </AssociationSet>
           <FunctionImport Name="AlumnoAdd">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
             <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
             <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
             <Parameter Name="Sexo" Mode="In" Type="String" />
-            <Parameter Name="IdRol" Mode="In" Type="Byte" />
-          </FunctionImport>
-          <EntitySet Name="Rols" EntityType="LEscogidoProgramacionNCapasAgostoModel.Rol" />
-          <AssociationSet Name="FK__Alumno__IdRol__15502E78" Association="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdRol__15502E78">
-            <End Role="Rol" EntitySet="Rols" />
-            <End Role="Alumno" EntitySet="Alumnoes" />
-          </AssociationSet>
-          <FunctionImport Name="AlumnoGetAll" ReturnType="Collection(LEscogidoProgramacionNCapasAgostoModel.AlumnoGetAll_Result)" />
-          <FunctionImport Name="AlumnoGetById" ReturnType="Collection(LEscogidoProgramacionNCapasAgostoModel.AlumnoGetById_Result)">
-            <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+            <Parameter Name="IdSemestre" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <EntityType Name="Rol">
-          <Key>
-            <PropertyRef Name="IdRol" />
-          </Key>
-          <Property Name="IdRol" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Alumnoes" Relationship="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdRol__15502E78" FromRole="Rol" ToRole="Alumno" />
-        </EntityType>
-        <Association Name="FK__Alumno__IdRol__15502E78">
-          <End Type="LEscogidoProgramacionNCapasAgostoModel.Rol" Role="Rol" Multiplicity="0..1" />
-          <End Type="LEscogidoProgramacionNCapasAgostoModel.Alumno" Role="Alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="IdRol" />
-            </Principal>
-            <Dependent Role="Alumno">
-              <PropertyRef Name="IdRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="AlumnoGetAll_Result">
           <Property Type="Int32" Name="IdAlumno" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
@@ -129,34 +93,45 @@
           <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
           <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
         </ComplexType>
+        <EntityType Name="Semestre">
+          <Key>
+            <PropertyRef Name="IdSemestre" />
+          </Key>
+          <Property Name="IdSemestre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alumnoes" Relationship="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdSemest__25869641" FromRole="Semestre" ToRole="Alumno" />
+        </EntityType>
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="IdAlumno" />
+          </Key>
+          <Property Name="IdAlumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IdSemestre" Type="Int32" />
+          <NavigationProperty Name="Semestre" Relationship="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdSemest__25869641" FromRole="Alumno" ToRole="Semestre" />
+        </EntityType>
+        <Association Name="FK__Alumno__IdSemest__25869641">
+          <End Type="LEscogidoProgramacionNCapasAgostoModel.Semestre" Role="Semestre" Multiplicity="0..1" />
+          <End Type="LEscogidoProgramacionNCapasAgostoModel.Alumno" Role="Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestre">
+              <PropertyRef Name="IdSemestre" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="IdSemestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LEscogidoProgramacionNCapasAgostoModelStoreContainer" CdmEntityContainer="LEscogidoProgramacionNCapasAgostoEntities">
-          <EntitySetMapping Name="Alumnoes">
-            <EntityTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.Alumno">
-              <MappingFragment StoreEntitySet="Alumno">
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
-                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
-                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
-                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AlumnoAdd" FunctionName="LEscogidoProgramacionNCapasAgostoModel.Store.AlumnoAdd" />
-          <EntitySetMapping Name="Rols">
-            <EntityTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.Rol">
-              <MappingFragment StoreEntitySet="Rol">
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AlumnoGetAll" FunctionName="LEscogidoProgramacionNCapasAgostoModel.Store.AlumnoGetAll">
             <ResultMapping>
               <ComplexTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.AlumnoGetAll_Result">
@@ -169,18 +144,28 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AlumnoGetById" FunctionName="LEscogidoProgramacionNCapasAgostoModel.Store.AlumnoGetById">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.AlumnoGetById_Result">
-                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+          <EntitySetMapping Name="Semestres">
+            <EntityTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.Semestre">
+              <MappingFragment StoreEntitySet="Semestre">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
-                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
-                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="IdSemestre" ColumnName="IdSemestre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alumnoes">
+            <EntityTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.Alumno">
+              <MappingFragment StoreEntitySet="Alumno">
+                <ScalarProperty Name="IdSemestre" ColumnName="IdSemestre" />
                 <ScalarProperty Name="Sexo" ColumnName="Sexo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AlumnoAdd" FunctionName="LEscogidoProgramacionNCapasAgostoModel.Store.AlumnoAdd" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

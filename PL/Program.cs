@@ -12,9 +12,10 @@ namespace PL
         static void Main(string[] args)
         {
             //Alumno.();
-            Alumno.Add();
+            // Alumno.Add();
             //Alumno.AddSP();
-
+            Alumno.Add();
+            Console.ReadKey();
             //Alumno.Update();
         }
     }

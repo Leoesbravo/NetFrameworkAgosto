@@ -101,7 +101,6 @@ namespace BL
 
             return result;
         }
-
         public static ML.Result GetAllSP()
         {
             ML.Result result = new ML.Result();
@@ -160,6 +159,83 @@ namespace BL
 
             return result;
         }
+        public static ML.Result GetAllLINQ()
+        {
+            ML.Result result = new ML.Result();
+
+            try
+            {
+                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
+                {
+                    var query = (from alumno in context.Alumnoes              
+                                 select alumno );
+
+                    result.Objects = new List<object>();
+
+                    if (query != null)
+                    {
+                        foreach (var obj in query)
+                        {
+                            ML.Alumno alumno = new ML.Alumno();
+                            alumno.IdAlumno = obj.IdAlumno;
+                            alumno.Nombre = obj.Nombre;
+                            alumno.ApellidoPaterno = obj.ApellidoPaterno;
+                            alumno.ApellidoMaterno = obj.ApellidoMaterno;
+                            alumno.FechaNacimiento = obj.FechaNacimiento.ToString();
+                            alumno.Sexo = obj.Sexo;
+                            alumno.Semestre = new ML.Semestre();
+                            alumno.Semestre.IdSemestre = (byte)obj.IdSemestre;                          
+                            result.Objects.Add(alumno);
+                        }
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                        result.ErrorMessage = "No se encontraron registros";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+            }
+            return result;
+        }
+        public static ML.Result AddLINQ(ML.Alumno alumno)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
+                {
+                    DL_EF.Alumno alumnoDL = new DL_EF.Alumno();
+
+                    alumnoDL.Nombre = alumno.Nombre;
+                    alumnoDL.ApellidoPaterno = alumno.ApellidoPaterno;
+                    alumnoDL.ApellidoMaterno = alumno.ApellidoMaterno;
+                    alumnoDL.FechaNacimiento = DateTime.ParseExact(alumno.FechaNacimiento, "dd-MM-yyyy", null);
+                    alumnoDL.Sexo = alumno.Sexo;
+                    alumnoDL.IdSemestre = alumno.Semestre.IdSemestre;
+
+                    context.Alumnoes.Add(alumnoDL);
+                    context.SaveChanges();
+                }
+                result.Correct = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+            }
+            return result;
+        }
+
+
 
     }
 }
