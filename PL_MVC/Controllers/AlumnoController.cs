@@ -25,5 +25,30 @@ namespace PL_MVC.Controllers
             }
 
         }
+
+        [HttpGet]
+        public ActionResult Form(int? IdAlumno)
+        {
+            //if(idAlumno==0) //agregue
+            //Else {GetById} 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Form(ML.Alumno alumno)
+        {
+            ML.Result result = new ML.Result();
+            if (alumno.IdAlumno == 0)
+            {
+                result = BL.Alumno.AddEF(alumno);
+            }
+            else
+            {
+                result = BL.Alumno.Update(alumno);
+                
+            }
+            return View();
+        }
+
     }
 }

@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-3">
-            @Html.ActionLink("Agrega Producto", "Add", "Producto", htmlAttributes: new { @class = "btn btn-success" })
+            @Html.ActionLink("+", "Form", "Alumno", htmlAttributes: new { @class = "btn btn-success" })
         </div>
     </div>
 
@@ -45,11 +45,11 @@
                         Eliminar
                     </th>
                 </tr>
-                @foreach (ML.Alumno alumo in Model.Alumnos)
+                @*@foreach (ML.Alumno alumo in Model.Alumnos)
                 {
                     <tr>
                         <td class="text-center">
-                            <a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Usuario", new { IdUsuario = alumo.IdAlumno })"></a>
+                            <a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumo.IdAlumno })"></a>
                         </td>
                         <td class="text-center">
                             @alumo.IdAlumno
@@ -73,7 +73,7 @@
                             <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Usuario", new { IdUsuario = alumo.IdAlumno })" onclick="return confirm('¿Estas seguro que deseas eliminar este registro?');"></a>
                         </th>
                     </tr>
-                }
+                }*@
             </table>
         </div>
     </div>
