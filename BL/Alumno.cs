@@ -16,7 +16,7 @@ namespace BL
 
             try
             {
-                using(DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
+                using(DL_EF.LEscogidoProgramacionNCapasAgostoEntities1 context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities1())
                 {
                     var query = context.AlumnoAdd(alumno.Nombre, alumno.ApellidoPaterno, alumno.ApellidoMaterno, alumno.FechaNacimiento, alumno.Sexo, alumno.Semestre.IdSemestre);
 
@@ -30,10 +30,12 @@ namespace BL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
             }
             return result;
         }
@@ -166,7 +168,7 @@ namespace BL
 
             try
             {
-                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
+                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities1 context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities1())
                 {
                     var query = (from alumno in context.Alumnoes              
                                  select alumno );
@@ -210,7 +212,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
+                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities1 context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities1())
                 {
                     DL_EF.Alumno alumnoDL = new DL_EF.Alumno();
 

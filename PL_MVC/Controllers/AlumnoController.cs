@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace PL_MVC.Controllers
 {
@@ -35,7 +31,7 @@ namespace PL_MVC.Controllers
             }
             else
             {
-
+                return View();
             }
         }
 
@@ -46,13 +42,23 @@ namespace PL_MVC.Controllers
             if (alumno.IdAlumno == 0)
             {
                 result = BL.Alumno.AddEF(alumno);
+
+                if (result.Correct)
+                {
+                    ViewBag.Message = "Alumno agregado correctamente";
+                }
+                else
+                {
+                    ViewBag.Message = "Ocurrio un error al agregar al alumno" + result.ErrorMessage;
+                }
+            
             }
             else
             {
                 result = BL.Alumno.Update(alumno);
                 
             }
-            return View();
+            return View("Modal");
         }
 
     }

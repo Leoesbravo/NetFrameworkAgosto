@@ -81,11 +81,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="LEscogidoProgramacionNCapasAgosto.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LEscogidoProgramacionNCapasAgosto.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="LEscogidoProgramacionNCapasAgosto.edmx.diagram">
       <DependentUpon>LEscogidoProgramacionNCapasAgosto.edmx</DependentUpon>
     </None>

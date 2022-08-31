@@ -57,7 +57,7 @@
 
                             @Html.LabelFor(model => model.Nombre)
 
-                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control"})
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
 
                             @Html.ValidationMessageFor(model => model.Nombre)
 
@@ -70,6 +70,46 @@
                             @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
 
                             @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.ApellidoMaterno)
+
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.FechaNacimiento)
+
+                            @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.FechaNacimiento)
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.Sexo)
+
+                            @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.Sexo)
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.Semestre)
+
+                            @Html.TextBoxFor(model => model.Semestre.IdSemestre, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
 
                         </div>
 

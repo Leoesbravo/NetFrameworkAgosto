@@ -20,7 +20,7 @@ namespace DL_EF
             this.Alumnoes = new HashSet<Alumno>();
         }
     
-        public int IdSemestre { get; set; }
+        public byte IdSemestre { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
