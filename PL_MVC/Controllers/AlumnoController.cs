@@ -29,9 +29,14 @@ namespace PL_MVC.Controllers
         [HttpGet]
         public ActionResult Form(int? IdAlumno)
         {
-            //if(idAlumno==0) //agregue
-            //Else {GetById} 
-            return View();
+            if (IdAlumno == null)
+            {
+                return View();
+            }
+            else
+            {
+
+            }
         }
 
         [HttpPost]
