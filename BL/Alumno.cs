@@ -130,6 +130,7 @@ namespace BL
                             foreach (DataRow row in tableAlumno.Rows)
                             {
                                 ML.Alumno alumno = new ML.Alumno();
+
                                 alumno.IdAlumno = int.Parse(row[0].ToString());
                                 alumno.Nombre = row[1].ToString();
                                 alumno.ApellidoPaterno = row[2].ToString();
