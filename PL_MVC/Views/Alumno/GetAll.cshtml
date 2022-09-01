@@ -23,57 +23,64 @@
                     <th class="text-center" scope="col">
                         Editar
                     </th>
-                    <th class="text-center" scope="col">
+                    <th class="hidden" scope="col">
                         IdAlumno
                     </th>
                     <th class="text-center" scope="col">
-                        Nombre
+                        Nombre completo
                     </th>
-                    <th class="text-center" scope="col">
-                        Apellido Paterno
-                    </th>
-                    <th class="text-center" scope="col">
-                        Apellido Materno
-                    </th>
+
                     <th class="text-center" scope="col">
                         Fecha de Nacimiento
                     </th>
                     <th class="text-center" scope="col">
                         Sexo
                     </th>
+                    <th class="hidden" scope="col">
+                        IdSemestre
+                    </th>
+
+                    <th class="text-center" scope="col">
+                        Semestre
+                    </th>
                     <th class="text-center" scope="col">
                         Eliminar
                     </th>
                 </tr>
-                @*@foreach (ML.Alumno alumo in Model.Alumnos)
+                @foreach (ML.Alumno alumno in Model.Alumnos)
                 {
                     <tr>
                         <td class="text-center">
-                            <a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumo.IdAlumno })"></a>
+                            <a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno })"></a>
+                        </td>
+                        <td class="hidden">
+                            @alumno.IdAlumno
                         </td>
                         <td class="text-center">
-                            @alumo.IdAlumno
+                            @alumno.Nombre @alumno.ApellidoPaterno @alumno.ApellidoMaterno
+                        </td>
+
+                        <td class="text-center">
+                            @*@alumno.FechaNacimiento*@
+                            @Convert.ToDateTime(alumno.FechaNacimiento).ToString("dd-MM-yyyy")
                         </td>
                         <td class="text-center">
-                            @alumo.Nombre
+                            @alumno.Sexo
+                        </td>
+
+                        <td class="hidden">
+
+                            @alumno.Semestre.IdSemestre
                         </td>
                         <td class="text-center">
-                            @alumo.ApellidoPaterno
-                        </td>
-                        <td class="text-center">
-                            @alumo.ApellidoMaterno
-                        </td>
-                        <td class="text-center">
-                            @alumo.FechaNacimiento
-                        </td>
-                        <td class="text-center">
-                            @alumo.Sexo
+
+                            @alumno.Semestre.Nombre
                         </td>
                         <th class="text-center">
-                            <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Usuario", new { IdUsuario = alumo.IdAlumno })" onclick="return confirm('¿Estas seguro que deseas eliminar este registro?');"></a>
+                            <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Usuario", new { IdUsuario = alumno.IdAlumno })" onclick="return confirm('¿Estas seguro que deseas eliminar este registro?');"></a>
                         </th>
                     </tr>
-                }*@
+                }
             </table>
         </div>
     </div>

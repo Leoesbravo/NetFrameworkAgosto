@@ -107,10 +107,18 @@
 
                             @Html.LabelFor(model => model.Semestre)
 
-                            @Html.TextBoxFor(model => model.Semestre.IdSemestre, new { @class = "form-control" })
+                            @*@Html.TextBoxFor(model => model.Semestre.IdSemestre, new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model => model.Semestre.IdSemestre, new SelectList(Model.Semestre.Semestres, "IdSemestre", "Nombre"), "Selecciona una opción", new { @class = "form-control" })
 
                             @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
 
+                            <select>
+                                <option>Selecciona una opción</option>
+                                <option>Primero</option>
+                                <option>Segundo</option>
+                                <option>Tercero</option>
+                                <option>Cuarto</option>
+                            </select>
                         </div>
 
                     </div>

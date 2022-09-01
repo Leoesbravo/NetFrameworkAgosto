@@ -238,6 +238,54 @@ namespace BL
             return result;
         }
 
+        public static ML.Result GetAllEF()
+        {
+            ML.Result result = new ML.Result();
+
+            try
+            {
+                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities1 context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities1())
+                {
+                    var query = context.AlumnoGetAll().ToList();
+
+                    result.Objects = new List<object>();
+
+                    if (query != null)
+                    {
+                        foreach (var obj in query)
+                        {
+                            ML.Alumno alumno = new ML.Alumno();
+                            alumno.IdAlumno = obj.IdAlumno;
+                            alumno.Nombre = obj.Nombre;
+                            alumno.ApellidoPaterno = obj.ApellidoPaterno;
+                            alumno.ApellidoMaterno = obj.ApellidoMaterno;
+                            alumno.FechaNacimiento = obj.FechaNacimiento.ToString();
+                            alumno.Sexo = obj.Sexo;
+
+                            alumno.Semestre = new ML.Semestre();
+                            alumno.Semestre.IdSemestre = (byte)obj.IdSemestre;
+                            alumno.Semestre.Nombre = obj.Semestre;
+
+                            result.Objects.Add(alumno);
+                        }
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                        result.ErrorMessage = "No se encontraron registros";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+            }
+            return result;
+
+        }
 
 
     }

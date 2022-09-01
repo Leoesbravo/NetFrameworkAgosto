@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c03278404556461a9d9fd0feee5e93aa" Name="Diagram1">
+      <Diagram DiagramId="c03278404556461a9d9fd0feee5e93aa" Name="Diagram1" ZoomLevel="130">
         <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Alumno" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Semestre" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdSemest__24927208" ManuallyRouted="false" />

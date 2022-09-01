@@ -7,7 +7,7 @@ namespace PL_MVC.Controllers
         [HttpGet]//Action Verb
         public ActionResult GetAll() //Action Method
         {
-            ML.Result result = BL.Alumno.GetAllLINQ();
+            ML.Result result = BL.Alumno.GetAllEF();
             ML.Alumno alumno = new ML.Alumno();
             if (result.Correct)
             {    //lista vacia     //lista de alumnos
@@ -25,9 +25,15 @@ namespace PL_MVC.Controllers
         [HttpGet]
         public ActionResult Form(int? IdAlumno)
         {
+            ML.Alumno alumno = new ML.Alumno();//instancia de objeto
+            alumno.Semestre = new ML.Semestre();//instancia de FK
+
+            ML.Result result = BL.Semestre.GetAllEF();
+
             if (IdAlumno == null)
             {
-                return View();
+                alumno.Semestre.Semestres = result.Objects;
+                return View(alumno);
             }
             else
             {
@@ -56,10 +62,278 @@ namespace PL_MVC.Controllers
             else
             {
                 result = BL.Alumno.Update(alumno);
-                
+
+                if (result.Correct)
+                {
+                    ViewBag.Message = "Alumno actualizado correctamente";
+                }
+                else
+                {
+                    ViewBag.Message = "Ocurrio un error al actualizar al alumno" + result.ErrorMessage;
+                }
+
             }
             return View("Modal");
         }
 
+
+        //delete
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

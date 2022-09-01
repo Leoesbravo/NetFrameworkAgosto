@@ -11,15 +11,9 @@ namespace DL_EF
 {
     using System;
     
-    public partial class AlumnoGetAll_Result
+    public partial class SemestreGetAll_Result
     {
-        public int IdAlumno { get; set; }
+        public byte IdSemestre { get; set; }
         public string Nombre { get; set; }
-        public string ApellidoPaterno { get; set; }
-        public string ApellidoMaterno { get; set; }
-        public Nullable<System.DateTime> FechaNacimiento { get; set; }
-        public string Sexo { get; set; }
-        public Nullable<byte> IdSemestre { get; set; }
-        public string Semestre { get; set; }
     }
 }
