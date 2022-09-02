@@ -123,6 +123,41 @@
 
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.Departamento.Area)
+                            @if (Model.Departamento.Area.Areas == null)
+                            {
+                                @Html.DropDownListFor(model => model.Departamento.Area.IdArea, new SelectList(string.Empty, "Value", "Text"), "Seleciona un area", htmlAttributes: new { id = "ddlArea", @class = "form-control" })
+                            }
+
+                            else
+                            {
+                                @Html.DropDownListFor(model => model.Departamento.Area.IdArea, new SelectList(Model.Departamento.Area.Areas, "IdArea", "Nombre"), "Seleciona un área", htmlAttributes: new { id = "ddlArea", @class = "form-control" })
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.Departamento)
+
+                            @if (Model.Departamento.Departamentos == null)
+                            {
+                                @Html.DropDownListFor(model => model.Departamento.IdDepartamento, new SelectList(string.Empty, "Value", "Text"), "Selecione un departamento", htmlAttributes: new { id = "ddlDepartamento", @class = "form-control" })
+                            }
+
+                            else
+                            {
+                                @Html.DropDownListFor(model => model.Departamento.IdDepartamento, new SelectList(Model.Departamento.Departamentos, "IdDepartamento", "Nombre"), "Selecione un departamento", htmlAttributes: new { id = "ddlDepartamento", @class = "form-control" })
+                            }
+
+                        </div>
+                    </div>
+
 
 
                     <div class="form-group">
@@ -147,3 +182,33 @@
 
 </div>
 
+@Scripts.Render("~/bundles/jquery")
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#ddlArea").change(function () {
+
+                $("#ddlDepartamento").empty();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDepartamento")',
+                    data: { IdArea: $("#ddlArea").val() },
+                    success: function (departamentos) {
+
+
+                        $.each(departamentos, function (i, departamentos) {
+                            $("#ddlDepartamento").append('<option value="'
+                                + departamentos.IdDepartamento + '">'
+                                + departamentos.Nombre + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed. ' + ex);
+                    }
+                });
+            });
+        })
+</script>

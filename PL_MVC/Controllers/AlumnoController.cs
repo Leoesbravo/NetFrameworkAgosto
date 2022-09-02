@@ -80,6 +80,21 @@ namespace PL_MVC.Controllers
         //delete
 
     }
+
+    public JsonResult GetDepartamento(int IdArea)
+    {
+        ML.Departamento depto = new ML.Departamento();
+
+        depto.IdDepartamento = 0;
+        depto.Nombre = "Seleccione una opción";
+
+        var result = BL.Departamento.GetByIdEFArea(IdArea);
+        result.Objects.Insert(0, depto);
+
+        return Json(result.Objects, JsonRequestBehavior.AllowGet);
+
+
+    }
 }
 
 
