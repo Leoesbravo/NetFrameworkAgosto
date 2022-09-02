@@ -185,7 +185,8 @@ namespace BL
                             alumno.FechaNacimiento = obj.FechaNacimiento.ToString();
                             alumno.Sexo = obj.Sexo;
                             alumno.Semestre = new ML.Semestre();
-                            alumno.Semestre.IdSemestre = (byte)obj.IdSemestre;                          
+                            alumno.Semestre.IdSemestre = (byte)obj.IdSemestre;
+                            //alumno.Semestre.Nombre = obj.Semestre.ToString();
                             result.Objects.Add(alumno);
                         }
                         result.Correct = true;

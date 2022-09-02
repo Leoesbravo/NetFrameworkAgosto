@@ -58,7 +58,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="LEscogidoProgramacionNCapasAgostoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="LEscogidoProgramacionNCapasAgostoEntities" annotation:LazyLoadingEnabled="true">
-          <FunctionImport Name="AlumnoGetAll" ReturnType="Collection(LEscogidoProgramacionNCapasAgostoModel.AlumnoGetAll_Result)" />
           <FunctionImport Name="AlumnoGetById" ReturnType="Collection(LEscogidoProgramacionNCapasAgostoModel.AlumnoGetById_Result)">
             <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -76,15 +75,8 @@
             <Parameter Name="Sexo" Mode="In" Type="String" />
             <Parameter Name="IdSemestre" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="AlumnoGetAll" ReturnType="Collection(LEscogidoProgramacionNCapasAgostoModel.AlumnoGetAll_Result)" />
         </EntityContainer>
-        <ComplexType Name="AlumnoGetAll_Result">
-          <Property Type="Int32" Name="IdAlumno" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
-          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
-        </ComplexType>
         <ComplexType Name="AlumnoGetById_Result">
           <Property Type="Int32" Name="IdAlumno" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
@@ -126,24 +118,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="AlumnoGetAll_Result">
+          <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="IdSemestre" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LEscogidoProgramacionNCapasAgostoModelStoreContainer" CdmEntityContainer="LEscogidoProgramacionNCapasAgostoEntities">
-          <FunctionImportMapping FunctionImportName="AlumnoGetAll" FunctionName="LEscogidoProgramacionNCapasAgostoModel.Store.AlumnoGetAll">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.AlumnoGetAll_Result">
-                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
-                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
-                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
-                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="Semestres">
             <EntityTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.Semestre">
               <MappingFragment StoreEntitySet="Semestre">
@@ -166,6 +155,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AlumnoAdd" FunctionName="LEscogidoProgramacionNCapasAgostoModel.Store.AlumnoAdd" />
+          <FunctionImportMapping FunctionImportName="AlumnoGetAll" FunctionName="LEscogidoProgramacionNCapasAgostoModel.Store.AlumnoGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LEscogidoProgramacionNCapasAgostoModel.AlumnoGetAll_Result">
+                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="IdSemestre" ColumnName="IdSemestre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
