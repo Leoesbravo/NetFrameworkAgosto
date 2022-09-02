@@ -29,6 +29,9 @@ namespace DL_EF
     
         public virtual DbSet<Semestre> Semestres { get; set; }
         public virtual DbSet<Alumno> Alumnoes { get; set; }
+        public virtual DbSet<Grupo> Grupoes { get; set; }
+        public virtual DbSet<Plantel> Plantels { get; set; }
+        public virtual DbSet<Horario> Horarios { get; set; }
     
         public virtual ObjectResult<AlumnoGetById_Result> AlumnoGetById(Nullable<int> idAlumno)
         {
@@ -71,6 +74,34 @@ namespace DL_EF
         public virtual ObjectResult<AlumnoGetAll_Result> AlumnoGetAll()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AlumnoGetAll_Result>("AlumnoGetAll");
+        }
+    
+        public virtual int EstadoGetByIdPais(Nullable<int> idPais)
+        {
+            var idPaisParameter = idPais.HasValue ?
+                new ObjectParameter("IdPais", idPais) :
+                new ObjectParameter("IdPais", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EstadoGetByIdPais", idPaisParameter);
+        }
+    
+        public virtual ObjectResult<GrupoGetByIdPlantel_Result> GrupoGetByIdPlantel(Nullable<int> idPlantel)
+        {
+            var idPlantelParameter = idPlantel.HasValue ?
+                new ObjectParameter("IdPlantel", idPlantel) :
+                new ObjectParameter("IdPlantel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GrupoGetByIdPlantel_Result>("GrupoGetByIdPlantel", idPlantelParameter);
+        }
+    
+        public virtual int PaisGetALL()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaisGetALL");
+        }
+    
+        public virtual ObjectResult<PlantelGetAll_Result> PlantelGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PlantelGetAll_Result>("PlantelGetAll");
         }
     }
 }

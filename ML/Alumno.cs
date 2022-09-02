@@ -15,6 +15,7 @@ namespace ML
         public string FechaNacimiento { get; set; }
         public string Sexo { get; set; }
         public List<object> Alumnos { get; set; }
+        public ML.Horario Horario { get; set; }
         public  ML.Semestre Semestre { get; set; } // propiedad de navegación
     }
 }

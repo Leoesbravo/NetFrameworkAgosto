@@ -29,9 +29,16 @@ namespace PL_MVC.Controllers
         [HttpGet]
         public ActionResult Form(int? IdAlumno)
         {
-            //if(idAlumno==0) //agregue
-            //Else {GetById} 
-            return View();
+            ML.Alumno alumno = new ML.Alumno();
+            ML.Result result = BL.Plantel.GetAll();
+
+            alumno.Horario = new ML.Horario();
+            alumno.Horario.Grupo = new ML.Grupo();
+            alumno.Horario.Grupo.Plantel = new ML.Plantel();
+
+            alumno.Horario.Grupo.Plantel.Planteles = result.Objects;
+
+            return View(alumno);
         }
 
         [HttpPost]
