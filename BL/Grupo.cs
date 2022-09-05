@@ -27,7 +27,7 @@ namespace BL
                             grupo.Plantel = new ML.Plantel();
                             grupo.Plantel.IdPlantel = item.IdPlantel.Value;
 
-                            result.Objects.Add(grupo);
+                            result.Objects.Add(grupo); //devuelve una lista de objetos 
                         }
                         result.Correct = true;
                     }

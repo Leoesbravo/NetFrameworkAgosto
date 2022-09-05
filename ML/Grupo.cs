@@ -13,5 +13,7 @@ namespace ML
 
         //propiedad de navegación
         public ML.Plantel Plantel { get; set; }
+
+        public List<object> Grupos { get; set; }
     }
 }

@@ -56,6 +56,11 @@ namespace PL_MVC.Controllers
             }
             return View();
         }
+        public JsonResult GrupoGetByIdPlantel(int IdPlantel)
+        {
+            ML.Result result = BL.Grupo.GetByIdPlantel(IdPlantel);
 
+            return Json(result.Objects);
+        }
     }
 }
