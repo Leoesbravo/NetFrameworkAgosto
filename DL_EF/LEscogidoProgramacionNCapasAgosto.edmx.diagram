@@ -13,6 +13,7 @@
         <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Grupo__IdPlantel__3A81B327" />
         <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Horario" Width="1.5" PointX="5.25" PointY="6" />
         <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Horario__IdGrupo__3F466844" />
+        <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Horario__IdAlumn__48CFD27E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

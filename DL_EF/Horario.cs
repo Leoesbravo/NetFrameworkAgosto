@@ -17,7 +17,9 @@ namespace DL_EF
         public int IdHorario { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> IdGrupo { get; set; }
+        public Nullable<int> IdAlumno { get; set; }
     
         public virtual Grupo Grupo { get; set; }
+        public virtual Alumno Alumno { get; set; }
     }
 }

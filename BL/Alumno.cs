@@ -236,6 +236,53 @@ namespace BL
             }
             return result;
         }
+        public static ML.Result GetByIdEF(int IdAlumno)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                using (DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
+                {
+                    var alumnos = context.AlumnoGetById(IdAlumno).FirstOrDefault();
+                    result.Objects = new List<object>();
+                    if (alumnos != null)
+                    {
+                        ML.Alumno alumno = new ML.Alumno();
+                        alumno.IdAlumno = alumnos.IdAlumno;
+                        alumno.Nombre = alumnos.Nombre;
+                        alumno.ApellidoPaterno = alumnos.ApellidoPaterno;
+                        alumno.ApellidoMaterno = alumnos.ApellidoMaterno;
+                        alumno.FechaNacimiento = alumnos.FechaNacimiento.ToString();
+                        alumno.Sexo = alumnos.Sexo;
+
+                        alumno.Semestre = new ML.Semestre();
+                       // alumno.Semestre.IdSemestre = alumnos.IdSemestre;
+
+                        alumno.Horario = new ML.Horario();
+
+                        alumno.Horario.Grupo = new ML.Grupo();
+                        alumno.Horario.Grupo.IdGrupo = alumnos.IdGrupo;
+                        alumno.Horario.Grupo.Nombre = alumnos.NombreGrupo;
+
+                        alumno.Horario.Grupo.Plantel = new ML.Plantel();
+                        alumno.Horario.Grupo.Plantel.IdPlantel = alumnos.IdPlantel;
+
+                        result.Object = alumno; //BOXING 
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+            }
+            return result;
+        }
 
 
 

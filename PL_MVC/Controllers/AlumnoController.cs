@@ -32,13 +32,31 @@ namespace PL_MVC.Controllers
             ML.Alumno alumno = new ML.Alumno();
             ML.Result result = BL.Plantel.GetAll();
 
-            alumno.Horario = new ML.Horario();
-            alumno.Horario.Grupo = new ML.Grupo();
-            alumno.Horario.Grupo.Plantel = new ML.Plantel();
+            if (IdAlumno == 0)
+            {
+                //Agregar
+                alumno.Horario = new ML.Horario();
+                alumno.Horario.Grupo = new ML.Grupo();
+                alumno.Horario.Grupo.Plantel = new ML.Plantel();
 
-            alumno.Horario.Grupo.Plantel.Planteles = result.Objects;
+                alumno.Horario.Grupo.Plantel.Planteles = result.Objects;
 
-            return View(alumno);
+                return View(alumno);
+            }
+            else
+            {
+                //Update
+                ML.Result resultalumno = BL.Alumno.GetByIdEF(IdAlumno.Value);
+                alumno = ((ML.Alumno)resultalumno.Object);
+
+                ML.Result resultGrupos = BL.Grupo.GetByIdPlantel(alumno.Horario.Grupo.Plantel.IdPlantel);
+
+                alumno.Horario.Grupo.Plantel.Planteles = result.Objects;
+                alumno.Horario.Grupo.Grupos = resultGrupos.Objects;
+
+                return View(alumno);
+            }
+            
         }
 
         [HttpPost]

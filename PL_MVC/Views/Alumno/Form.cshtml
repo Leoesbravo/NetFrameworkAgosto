@@ -92,7 +92,7 @@
                                 }
                                 else
                                 {
-                                    @Html.DropDownListFor(model => model.Horario.Grupo.IdGrupo, new SelectList(Model.Horario.Grupo.Grupos, "IdGrupo", "Horario"), "Selecciona un grupo", new { @class = "form-control", @id = "ddlGrupo" })
+                                    @Html.DropDownListFor(model => model.Horario.Grupo.IdGrupo, new SelectList(Model.Horario.Grupo.Grupos, "IdGrupo", "Nombre"), "Selecciona un grupo", new { @class = "form-control", @id = "ddlGrupo" })
                                     @Html.ValidationMessageFor(model => model.Horario.Grupo.IdGrupo)
                                 }
                             </div>
@@ -147,8 +147,8 @@
                             $("#ddlGrupo").append('<option value="0">'+ 'Seleccione una opción' + '</option>');
                             $.each(grupos, function (i, grupos) {
                                 $("#ddlGrupo").append('<option value="'
-                                                           + grupos.idGrupo + '">'
-                                                           + grupos.nombre + '</option>');
+                                                           + grupos.IdGrupo + '">'
+                                                           + grupos.Nombre + '</option>');
                             });
                         },
                         error: function (ex) {
