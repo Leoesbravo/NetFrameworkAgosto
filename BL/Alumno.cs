@@ -18,7 +18,7 @@ namespace BL
             {
                 using(DL_EF.LEscogidoProgramacionNCapasAgostoEntities context = new DL_EF.LEscogidoProgramacionNCapasAgostoEntities())
                 {
-                    var query = context.AlumnoAdd(alumno.Nombre, alumno.ApellidoPaterno, alumno.ApellidoMaterno, alumno.FechaNacimiento, alumno.Sexo, alumno.Semestre.IdSemestre);
+                    var query = context.AlumnoAdd(alumno.Nombre, alumno.ApellidoPaterno, alumno.ApellidoMaterno, alumno.FechaNacimiento, alumno.Sexo, alumno.Semestre.IdSemestre, "", "","","",1);
 
                     if (query > 0)
                     {

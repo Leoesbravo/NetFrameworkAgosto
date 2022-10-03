@@ -61,15 +61,21 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Alumno.svc" />
     <Content Include="Operaciones.svc" />
     <Content Include="Service1.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alumno.svc.cs">
+      <DependentUpon>Alumno.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IAlumno.cs" />
     <Compile Include="IOperaciones.cs" />
     <Compile Include="Operaciones.svc.cs">
       <DependentUpon>Operaciones.svc</DependentUpon>
     </Compile>
+    <Compile Include="Result.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -86,6 +92,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{4736f775-9037-4078-b634-7c04b13c4f96}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ML\ML.csproj">
+      <Project>{0235388c-12e7-4615-90f4-3b2c440a83a3}</Project>
+      <Name>ML</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

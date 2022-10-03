@@ -68,7 +68,8 @@ namespace PL_MVC.Controllers
             ML.Result result = new ML.Result();
             if (alumno.IdAlumno == 0)
             {
-                result = BL.Alumno.AddEF(alumno);
+                ServiceAlumno.AlumnoClient alumnoClient = new ServiceAlumno.AlumnoClient();
+                var resultAlumno = alumnoClient.Add(alumno);
             }
             else
             {
