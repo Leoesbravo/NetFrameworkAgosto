@@ -8,6 +8,13 @@
         <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Alumno" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Semestre" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Alumno__IdSemest__24927208" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Direccion" Width="1.5" PointX="5.625" PointY="1.125" />
+        <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Grupo" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Horario" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="LEscogidoProgramacionNCapasAgostoModel.Plantel" Width="1.5" PointX="0.75" PointY="5.125" />
+        <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Direccion__IdAlu__36B12243" />
+        <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Grupo__IdPlantel__2A4B4B5E" />
+        <AssociationConnector Association="LEscogidoProgramacionNCapasAgostoModel.FK__Horario__IdGrupo__2D27B809" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
