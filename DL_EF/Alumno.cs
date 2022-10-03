@@ -18,6 +18,7 @@ namespace DL_EF
         public Alumno()
         {
             this.Horarios = new HashSet<Horario>();
+            this.Direccions = new HashSet<Direccion>();
         }
     
         public int IdAlumno { get; set; }
@@ -27,9 +28,12 @@ namespace DL_EF
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public string Sexo { get; set; }
         public Nullable<int> IdSemestre { get; set; }
+        public string Imagen { get; set; }
     
         public virtual Semestre Semestre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Horario> Horarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Direccion> Direccions { get; set; }
     }
 }
